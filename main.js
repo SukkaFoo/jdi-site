@@ -37,7 +37,7 @@ if (form) {
     const location = form.querySelector('[name="location"]').value;
     const message = form.querySelector('[name="message"]').value;
 
-    const recipient = location === 'United States' ? 'carl@jdintelligence.com' : 'info@jdintelligence.com';
+    const recipient = 'peter@jdintelligence.com';
     const subject = encodeURIComponent(`Enquiry from ${name} — ${company}`);
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nService: ${service}\nLocation: ${location}\n\n${message}`

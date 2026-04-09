@@ -108,7 +108,7 @@ The US market is the primary growth target. Carl Geyer is US-based and leads all
 11. **Team** (`#team`) — three principal cards
 12. **Locations** — US and SA office cards
 13. **Process** (`#process`) — 4-step how it works
-14. **Contact / CTA** (`#contact`) — split layout, form routes to carl@ for US, info@ for SA
+14. **Contact / CTA** (`#contact`) — split layout, form routes all submissions to peter@jdintelligence.com
 15. **Footer** — logo, links, columns
 
 ---
@@ -130,7 +130,7 @@ Do NOT add Billabong, Goodyear, or any unconfirmed names to this list without ex
 
 - **US enquiries** → carl@jdintelligence.com
 - **SA enquiries** → info@jdintelligence.com
-- The contact form reads the "Where are you based?" field and routes the mailto accordingly
+- **Web form submissions** → all routed to peter@jdintelligence.com regardless of location field
 
 ---
 
@@ -142,7 +142,7 @@ Do NOT add Billabong, Goodyear, or any unconfirmed names to this list without ex
 - No employer names (Goodyear, Billabong) in client-facing contexts
 - The `#capabilities` section contains the skills matrix — do not remove it
 - Mobile responsiveness — all three breakpoints must be tested when making layout changes
-- The contact form mailto routing logic in `main.js` must be preserved when editing that file
+- The contact form in `main.js` sends all submissions to peter@jdintelligence.com — preserve this when editing that file
 
 ---
 
