@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JDIntelligence — Logo Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+body { font-family: Arial, Helvetica, sans-serif; background: #EAECEE; padding: 56px 24px; margin: 0; }
+.card { background: white; padding: 40px; border-radius: 8px; max-width: 520px; box-shadow: 0 2px 16px rgba(0,0,0,0.1); }
+h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; color: #0D1B2A; margin: 0 0 4px; }
+h1 span { color: #B8933A; }
+.sub { font-size: 13px; color: #6B7A8D; margin: 0 0 32px; line-height: 1.6; }
+.label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #B8933A; font-weight: 600; margin-bottom: 10px; }
+.preview-box { padding: 18px 22px; border: 1px solid #E5E7EB; border-radius: 6px; display: inline-flex; align-items: center; margin-bottom: 28px; min-height: 52px; min-width: 200px; }
+.btn { background: #0D1B2A; color: white; border: none; padding: 13px 28px; border-radius: 4px; font-size: 14px; cursor: pointer; font-family: Arial, sans-serif; font-weight: 500; letter-spacing: 0.03em; }
+.btn:hover { background: #162840; }
+.btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.steps { background: #0D1B2A; color: rgba(255,255,255,0.82); padding: 22px 26px; border-radius: 6px; margin-top: 28px; font-size: 13px; line-height: 1.9; border-left: 3px solid #B8933A; }
+.steps strong { color: #fff; display: block; margin-bottom: 6px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #B8933A; }
+code { background: rgba(184,147,58,0.18); color: #D4AA58; padding: 1px 6px; border-radius: 3px; font-size: 11px; font-family: monospace; }
+ol { margin: 0; padding-left: 18px; }
+li { margin-bottom: 2px; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>JD<span>I</span>ntelligence</h1>
+  <p class="sub">Renders the JDIntelligence wordmark in Playfair Display at 2× resolution.<br>Download once, then tell Claude — it will wire it into the signatures automatically.</p>
+
+  <div class="label">Preview</div>
+  <div class="preview-box" id="preview">
+    <span style="font-size:12px;color:#9CA3AF;">Loading font…</span>
+  </div>
+  <br>
+  <button class="btn" id="dlBtn" onclick="doDownload()" disabled>Download logo-sig.png</button>
+
+  <div class="steps">
+    <strong>Next steps</strong>
+    <ol>
+      <li>Click <strong style="color:#fff;">Download logo-sig.png</strong> above.</li>
+      <li>Move the downloaded file into <code>C:\Users\User\jdi-site\</code>.</li>
+      <li>Tell Claude it's in place — it will commit it and update the signatures.</li>
+    </ol>
+  </div>
+</div>
+
+<canvas id="c" style="display:none;"></canvas>
+
+<script>
+let pngUrl = '';
+
+async function render() {
+  // Wait for Playfair Display to fully load
+  await document.fonts.load('700 20px "Playfair Display"');
+
+  const canvas = document.getElementById('c');
+  const ctx    = canvas.getContext('2d');
+  const SCALE  = 2;   // 2x for retina sharpness
+  const FS     = 20;  // font-size in px (matches site nav-logo)
+  const LS     = (0.04 * FS).toFixed(2) + 'px'; // letter-spacing: 0.04em
+
+  // Apply letter-spacing if the browser supports it on canvas
+  ctx.font = `700 ${FS}px "Playfair Display"`;
+  if ('letterSpacing' in ctx) ctx.letterSpacing = LS;
+
+  // Measure each segment
+  const jdW   = ctx.measureText('JD').width;
+  const iW    = ctx.measureText('I').width;
+  const restW = ctx.measureText('ntelligence').width;
+  const W     = Math.ceil(jdW + iW + restW) + 6; // small horizontal pad
+  const H     = 28;
+
+  // Set final canvas size (2x physical pixels)
+  canvas.width  = W * SCALE;
+  canvas.height = H * SCALE;
+  ctx.scale(SCALE, SCALE);
+  ctx.font = `700 ${FS}px "Playfair Display"`;
+  if ('letterSpacing' in ctx) ctx.letterSpacing = LS;
+
+  // Draw — baseline at y=22 leaves room for ascenders
+  ctx.fillStyle = '#0D1B2A';
+  ctx.fillText('JD', 0, 22);
+  ctx.fillStyle = '#B8933A';
+  ctx.fillText('I', jdW, 22);
+  ctx.fillStyle = '#0D1B2A';
+  ctx.fillText('ntelligence', jdW + iW, 22);
+
+  pngUrl = canvas.toDataURL('image/png');
+
+  // Show preview image
+  const img = document.createElement('img');
+  img.src   = pngUrl;
+  img.style.height = H + 'px';
+  img.alt   = 'JDIntelligence';
+  const box = document.getElementById('preview');
+  box.innerHTML = '';
+  box.appendChild(img);
+
+  document.getElementById('dlBtn').disabled = false;
+}
+
+function doDownload() {
+  if (!pngUrl) return;
+  const a = document.createElement('a');
+  a.href     = pngUrl;
+  a.download = 'logo-sig.png';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+render().catch(err => {
+  document.getElementById('preview').innerHTML =
+    '<span style="color:#e07a7a;font-size:12px;">Render failed — try refreshing.</span>';
+  console.error(err);
+});
+</script>
+</body>
+</html>
