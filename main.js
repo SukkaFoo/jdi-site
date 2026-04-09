@@ -26,7 +26,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Contact form — FormSubmit.co delivery to peter@jdintelligence.com
-const form = document.querySelector('.cta-form');
+const form = document.getElementById('contactForm');
 if (form) {
   const submitBtn = document.getElementById('formSubmit');
   const formFields = document.getElementById('formFields');
