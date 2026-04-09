@@ -56,27 +56,35 @@
     </div>
   </div>
   <div class="cta-form">
-    <div class="form-row">
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="email" name="email" placeholder="Email address" required>
+    <div class="form-fields" id="formFields">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Email address" required>
+      </div>
+      <input type="text" name="company" placeholder="Company name">
+      <select name="service">
+        <option value="" disabled selected>What are you looking for?</option>
+        <option>Fractional CFO / FD services</option>
+        <option>Outsourced accounting</option>
+        <option>Business intelligence &amp; Power BI</option>
+        <option>Full-stack finance function</option>
+        <option>Not sure yet — let's talk</option>
+      </select>
+      <select name="location">
+        <option value="" disabled selected>Where are you based?</option>
+        <option>United States</option>
+        <option>South Africa</option>
+        <option>Other</option>
+      </select>
+      <textarea name="message" placeholder="Tell us a bit about your business and what you need..."></textarea>
+      <button type="submit" class="btn-submit" id="formSubmit">Send message <span>→</span></button>
+      <p class="form-error" id="formError">Something went wrong — please email us directly at <a href="mailto:peter@jdintelligence.com">peter@jdintelligence.com</a>.</p>
     </div>
-    <input type="text" name="company" placeholder="Company name">
-    <select name="service">
-      <option value="" disabled selected>What are you looking for?</option>
-      <option>Fractional CFO / FD services</option>
-      <option>Outsourced accounting</option>
-      <option>Business intelligence &amp; Power BI</option>
-      <option>Full-stack finance function</option>
-      <option>Not sure yet — let's talk</option>
-    </select>
-    <select name="location">
-      <option value="" disabled selected>Where are you based?</option>
-      <option>United States</option>
-      <option>South Africa</option>
-      <option>Other</option>
-    </select>
-    <textarea name="message" placeholder="Tell us a bit about your business and what you need..."></textarea>
-    <button type="submit" class="btn-submit">Send message <span>→</span></button>
+    <div class="form-success" id="formSuccess" aria-live="polite">
+      <div class="form-success-check">✓</div>
+      <h3>Message received</h3>
+      <p>Thank you for getting in touch. One of our principals will respond to you directly.</p>
+    </div>
   </div>
 </section>
 

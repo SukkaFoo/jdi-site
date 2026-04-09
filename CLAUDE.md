@@ -150,7 +150,7 @@ Do NOT add Billabong, Goodyear, or any unconfirmed names to this list without ex
 
 - [ ] Real headshots for all three principals (avatars currently show initials: PV, CG, DB)
 - [ ] Additional client logos to be confirmed and added to logos bar
-- [ ] Contact form to be replaced with a proper backend handler (currently uses mailto fallback)
+- [x] Contact form — now uses FormSubmit.co AJAX (POST to formsubmit.co/ajax/peter@jdintelligence.com). Shows inline success/error state. Note: first-ever submission triggers a one-time verification email to Peter — he must click the link before live deliveries start.
 - [ ] Cookie consent / privacy policy page
 - [ ] Mobile menu animation polish
 - [ ] Testimonials / case studies section (future)

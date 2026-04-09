@@ -25,24 +25,45 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Contact form — mailto fallback until backend is wired up
+// Contact form — FormSubmit.co delivery to peter@jdintelligence.com
 const form = document.querySelector('.cta-form');
 if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = form.querySelector('[name="name"]').value;
-    const email = form.querySelector('[name="email"]').value;
-    const company = form.querySelector('[name="company"]').value;
-    const service = form.querySelector('[name="service"]').value;
-    const location = form.querySelector('[name="location"]').value;
-    const message = form.querySelector('[name="message"]').value;
+  const submitBtn = document.getElementById('formSubmit');
+  const formFields = document.getElementById('formFields');
+  const successEl = document.getElementById('formSuccess');
+  const errorEl = document.getElementById('formError');
 
-    const recipient = 'peter@jdintelligence.com';
-    const subject = encodeURIComponent(`Enquiry from ${name} — ${company}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nService: ${service}\nLocation: ${location}\n\n${message}`
-    );
-    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (errorEl) errorEl.classList.remove('visible');
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Sending…';
+
+    const payload = {
+      name:     form.querySelector('[name="name"]').value,
+      email:    form.querySelector('[name="email"]').value,
+      company:  form.querySelector('[name="company"]').value,
+      service:  form.querySelector('[name="service"]').value,
+      location: form.querySelector('[name="location"]').value,
+      message:  form.querySelector('[name="message"]').value,
+      _subject: `JDI website enquiry — ${form.querySelector('[name="name"]').value}`,
+    };
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/peter@jdintelligence.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('non-200');
+      formFields.style.display = 'none';
+      if (successEl) successEl.classList.add('visible');
+    } catch {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Send message <span>→</span>';
+      if (errorEl) errorEl.classList.add('visible');
+    }
   });
 }
 
