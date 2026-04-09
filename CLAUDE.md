@@ -24,7 +24,7 @@ JDI provides three core services to growth-stage and mid-market businesses in th
 2. **Fractional CFO & Advisory** — strategic finance leadership, turnaround, M&A. Led by Peter.
 3. **Business Intelligence** — Power BI, Microsoft Fabric, data engineering, ETL pipelines. Led by Digby.
 
-The core differentiator: **all three principals are Chartered Accountants with 50+ years combined experience at CFO/FD/GM level in multinationals**. Every client engagement is led by a principal directly — no juniors, no handoffs.
+The core differentiator: **Carl and Peter are Chartered Accountants; Digby brings deep finance and BI expertise at executive level. All three bring 50+ years combined experience at CFO/FD/GM level in multinationals**. Every client engagement is led by a principal directly — no juniors, no handoffs.
 
 The US market is the primary growth target. Carl Geyer is US-based and leads all US engagements.
 
