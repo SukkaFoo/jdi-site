@@ -4,12 +4,14 @@ const mobileMenu = document.getElementById('mobileMenu');
 
 hamburger.addEventListener('click', () => {
   mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open');
 });
 
 // Close mobile menu on link click
 document.querySelectorAll('.mobile-link').forEach(link => {
   link.addEventListener('click', () => {
     mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
   });
 });
 
@@ -54,7 +56,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.service-card, .team-card, .pillar, .process-step, .location-card').forEach(el => {
+document.querySelectorAll('.service-card, .team-card, .pillar, .process-step, .location-card, .cap-card, .svc-nav-item').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(16px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';

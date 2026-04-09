@@ -39,8 +39,11 @@ body { font-family: var(--font-body); color: var(--text-body); background: var(-
 .nav-links a:hover { color: var(--gold-light); }
 .nav-cta { background: var(--gold); color: var(--navy); font-size: 13px; font-weight: 500; padding: 9px 20px; border-radius: 4px; text-decoration: none; letter-spacing: 0.04em; transition: background 0.2s; white-space: nowrap; }
 .nav-cta:hover { background: var(--gold-light); }
-.nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-.nav-hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.8); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.8); border-radius: 2px; transition: transform 0.25s ease, opacity 0.25s ease; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 .nav-mobile { display: none; background: var(--navy-mid); border-top: 1px solid rgba(255,255,255,0.06); padding: 24px 24px 32px; }
 .nav-mobile ul { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
 .nav-mobile ul a { display: block; padding: 10px 0; font-size: 16px; color: rgba(255,255,255,0.75); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -307,6 +310,9 @@ footer { background: #0A1520; padding: 56px 48px 32px; }
 .svc-principal-callout strong { display: block; font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
 .svc-principal-callout p { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin: 0 !important; }
 
+/* ── MOBILE STICKY CTA ── */
+.mobile-cta-bar { display: none; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   :root { --section-pad: 72px 32px; }
@@ -349,9 +355,16 @@ footer { background: #0A1520; padding: 56px 48px 32px; }
   .footer-top { grid-template-columns: 1fr; gap: 40px; }
   .footer-cols { grid-template-columns: 1fr 1fr; }
   .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
-  .team-header { padding: 0 24px; }
-  .team-grid { padding: 0 24px; }
   .svc-detail-body { grid-template-columns: 1fr; gap: 40px; }
+  .cta-form input, .cta-form select { min-height: 48px; }
+  .cta-form select { -webkit-appearance: none; }
+  .mobile-cta-bar {
+    display: block; position: fixed; bottom: 0; left: 0; right: 0; z-index: 98;
+    background: var(--navy); border-top: 1px solid rgba(184,147,58,0.3);
+    padding: 12px 24px; padding-bottom: max(12px, env(safe-area-inset-bottom, 12px));
+  }
+  .mobile-cta-bar .btn-primary { display: block; text-align: center; padding: 14px; font-size: 15px; }
+  body { padding-bottom: 76px; }
   .svc-detail-header { gap: 16px; }
   .svc-detail-num { font-size: 48px; min-width: 52px; }
   .svc-detail-header h2 { font-size: 28px; }
@@ -367,10 +380,21 @@ footer { background: #0A1520; padding: 56px 48px 32px; }
 }
 
 @media (max-width: 480px) {
-  .hero h1 { font-size: 30px; }
+  .hero h1 { font-size: 28px; }
+  .hero-sub { font-size: 14px; }
   .hero-stats { grid-template-columns: 1fr; }
   .hero-stats .stat-card:last-child { grid-column: auto; }
+  .svc-intro h2 { font-size: 26px; }
+  .svc-detail-num { font-size: 36px; min-width: 44px; }
+  .svc-detail-header h2 { font-size: 24px; }
+  .step-num { font-size: 32px; min-width: 40px; }
+  .process-step { gap: 20px; }
+  .cta-text h2 { font-size: 26px; }
   .footer-cols { grid-template-columns: 1fr; }
   .cap-grid { grid-template-columns: 1fr; }
   .cap-list-wide { grid-template-columns: 1fr; }
+  .cap-credentials { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 16px; padding: 24px 20px; }
+  .cap-cred-item { align-items: center; }
+  .cap-cred-divider { display: none; }
+  .cap-cred-num { font-size: 26px; }
 }
