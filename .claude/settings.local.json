@@ -1,13 +1,23 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git clone:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git config:*)",
-      "Bash(git push:*)",
-      "Bash(ls:*)",
-      "Bash(git status:*)"
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(git -C \"c:\\\\Users\\\\User\\\\Projects\\\\jdi-site\" status)",
+      "Bash(git -C \"c:\\\\Users\\\\User\\\\Projects\\\\jdi-site\" diff)",
+      "Bash(git -C \"c:\\\\Users\\\\User\\\\Projects\\\\jdi-site\" log --oneline -5)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git -C \"c:\\\\Users\\\\User\\\\Projects\\\\jdi-site\" push)",
+      "Bash(git -C \"c:\\\\Users\\\\User\\\\Projects\\\\jdi-site\" pull --rebase)",
+      "Bash(git -C \"c:\\\\Users\\\\User\\\\Projects\\\\jdi-site\" add CLAUDE.md logo-sig.png \".claude/\")",
+      "Bash(git -C \"c:\\\\Users\\\\User\\\\Projects\\\\jdi-site\" stash)",
+      "Bash(git -C \"c:\\\\Users\\\\User\\\\Projects\\\\jdi-site\" stash pop)",
+      "Bash(git -C \"c:\\\\Users\\\\User\\\\Projects\\\\jdi-site\" checkout --theirs main.js)",
+      "Bash(git rebase *)",
+      "Bash(git push *)",
+      "Bash(GIT_EDITOR=true git rebase --continue)",
+      "Bash(GIT_EDITOR=\"true\" git rebase --continue)",
+      "Bash(git -C \"c:\\\\Users\\\\User\\\\Projects\\\\jdi-site\" diff --name-only --diff-filter=U)"
     ]
   }
 }
